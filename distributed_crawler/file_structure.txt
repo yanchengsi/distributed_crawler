@@ -1,0 +1,9 @@
+文件夹 PATH 列表
+卷序列号为 4450-27BC
+C:\USERS\FXY123\DISTRIBUTED_CRAWLER\DISTRIBUTED_CRAWLER
+├─distributed_crawler
+│  ├─config
+│  │  └─__pycache__
+│  └─core
+│      └─__pycache__
+└─utils

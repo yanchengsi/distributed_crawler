@@ -6,12 +6,19 @@ import random
 from typing import Optional, Dict, List  
 from urllib.parse import urlparse, urljoin  
 
-from distributed_crawler.distributed_crawler.core.data_storage import DataStorage
+from .data_storage import DataStorage
 from distributed_crawler.utils.proxy_pool import ProxyPool   # type: ignore
 from distributed_crawler.utils.robots_checker import RobotsChecker   # type: ignore
-from distributed_crawler.core.url_manager import URLManager   # type: ignore
-from distributed_crawler.core.data_parser import DataParser   # type: ignore
-
+from .url_manager import URLManager  # 同一目录下的模块
+from ..config.settings import CONFIG  # 上级目录的配置 # type: ignore
+from .data_parser import DataParser   # type: ignore
+# 确保有 Crawler 类的定义  
+class Crawler:  
+    def download(self, url):  
+        # 实现基本下载逻辑  
+        import requests  
+        response = requests.get(url)  
+        return response.text
 class DataCrawler:  
     def __init__(  
         self,   

@@ -1,8 +1,39 @@
-# distributed_crawler/core/data_parser.py  
 from typing import Dict, List, Optional  
 import logging  
 from bs4 import BeautifulSoup  
 from urllib.parse import urljoin  
+
+class Parser:  
+    def __init__(self):  
+        self.logger = logging.getLogger(__name__)  
+
+    def parse(self, html: str, base_url: str = '') -> Dict:  
+        """  
+        简化的解析方法，兼容测试  
+        
+        :param html: HTML 内容  
+        :param base_url: 基础 URL（可选）  
+        :return: 解析后的数据字典  
+        """  
+        try:  
+            soup = BeautifulSoup(html, 'html.parser')  
+            
+            return {  
+                'title': self._extract_title(soup),  
+                'text': soup.get_text(),  
+                'links': [a.get('href') for a in soup.find_all('a', href=True)]  
+            }  
+
+        except Exception as e:  
+            self.logger.error(f"解析 HTML 时发生错误: {e}")  
+            return {}  
+
+    def _extract_title(self, soup) -> Optional[str]:  
+        """  
+        提取页面标题  
+        """  
+        title_tag = soup.find('title')  
+        return title_tag.text.strip() if title_tag else None  
 
 class DataParser:  
     def __init__(self):  
@@ -10,7 +41,7 @@ class DataParser:
 
     def parse(self, html: str, base_url: str) -> Dict:  
         """  
-        解析 HTML 内容，提取结构化数据  
+        详细的 HTML 解析方法  
         
         :param html: HTML 内容  
         :param base_url: 基础 URL  
