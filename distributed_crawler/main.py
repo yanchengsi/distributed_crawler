@@ -1,11 +1,10 @@
 # distributed_crawler/main.py  
 import logging  
-from distributed_crawler.core.url_manager import URLManager  
-from distributed_crawler.utils.proxy_pool import ProxyPool  
-from distributed_crawler.utils.robots_checker import RobotsChecker  
-from distributed_crawler.core.data_crawler import DataCrawler  
-from distributed_crawler.core.data_storage import FileStorage  
-
+from crawler.core.url_manager import URLManager  
+from utils.proxy_pool import ProxyPool
+from distributed_crawler.utils.robots_checker import RobotsChecker  # 修正路径  
+from crawler.core.data_crawler import DataCrawler  
+from crawler.core.data_storage import FileStorage
 def main():  
     # 配置日志  
     logging.basicConfig(level=logging.INFO)  

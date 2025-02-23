@@ -1,5 +1,9 @@
 # config/settings.py  
 
+CONFIG = {  
+    'key1': 'value1',  
+    'key2': 'value2'  
+}
 # 基本配置  
 REDIS_CONFIG = {  
     'host': 'localhost',  
